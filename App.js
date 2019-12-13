@@ -11,21 +11,25 @@ class App extends React.Component {
       This is just a hack so I dont have to figure out how to load a local resource on android and ios
       It has the following html:
 
-        <html>
+      <html>
           <body>
             <h1>localStorage items:</h1>
               <div id="mediv">
               </div>
               <script>
+                  var lsData = {};
                   var mediv = document.getElementById("mediv");
                   localStorage.setItem("bob", "the builder");
+                  localStorage.setItem("1", "2");
+              
                   for (var i = 0; i < localStorage.length; i++) {
                       var key = localStorage.key(i);
                       var value = localStorage.getItem(key);
                       mediv.innerHTML += "<div>key: "+ key + ", value: " + value + "</div>";
-                      if (window.ReactNativeWebView)
-                        window.ReactNativeWebView.postMessage("key: "+ key + ", value: " + value);
+                      lsData[key] = value;
                   }
+                  if (window.ReactNativeWebView)
+                    window.ReactNativeWebView.postMessage(JSON.stringify(lsData));
               </script>
           </body>  
       </html>
