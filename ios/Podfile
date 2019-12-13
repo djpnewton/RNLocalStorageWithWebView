@@ -43,4 +43,6 @@ target 'WebviewLocalStorage' do
 
   # Automatically detect installed unimodules
   use_unimodules!
+  pod 'react-native-webview', :path => '../node_modules/react-native-webview'
+
 end
